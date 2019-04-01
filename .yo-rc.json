@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.zf.gidi"
+    },
+    "jhipsterVersion": "5.4.2",
+    "applicationType": "monolith",
+    "baseName": "gidiLibrary",
+    "packageName": "com.zf.gidi",
+    "packageFolder": "com/zf/gidi",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Y2VjYTQxNTRmZWE1MzM1MGE5NDllOWU1MDZlMjFjYWRjOTE5MWExNzQwNmIzYmZlNWMzMWFmZjU2MTY3YTE5ZjUzNmY0YmMzZGRkZDk5ODFjZWJiMTQ0YzYyNmQ4M2ZkNGJkMTQyNWJjZTJhNjRjZDgxZjJjYzJiMzdlMGYwOTA=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}

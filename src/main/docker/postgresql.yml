@@ -1,0 +1,11 @@
+version: '2'
+services:
+    gidilibrary-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/gidiLibrary/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=gidiLibrary
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
