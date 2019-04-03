@@ -118,5 +118,6 @@
         "use-pipe-transform-interface": false,
         "component-class-suffix": true,
         "directive-class-suffix": true
-    }
+    },
+
 }
