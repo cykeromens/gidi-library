@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-book-record-heading" class="warning">You're about to borrow <strong routerLink="['/book',book.id]"> {{book.title}} </strong>,
+                written by <strong>{{book.author}} </strong></h2>
+            <h5>Kindly, provide the intention of borrow and the return date. Happy Reading!!</h5>
+            <hr/>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_intention">Intention</label>
+                    <input type="text" class="form-control" name="intention" id="field_intention"
+                        [(ngModel)]="bookRecord.intention" required/>
+                    <div [hidden]="!(editForm.controls.intention?.dirty && editForm.controls.intention?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.intention?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_returnDate">Return Date</label>
+                    <div class="input-group">
+                        <input id="field_returnDate" type="text" class="form-control" name="returnDate" ngbDatepicker  #returnDateDp="ngbDatepicker" [(ngModel)]="bookRecord.returnDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="returnDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.returnDate?.dirty && editForm.controls.returnDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.returnDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

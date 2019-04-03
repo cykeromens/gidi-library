@@ -1,0 +1,80 @@
+<div>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Search...">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="bookRecords">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="intention"><span>Intention</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="borrowedAt"><span>Borrowed On</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="returnDate"><span>Return Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="status"><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login" [hidden]="!isAdmin()"><span>Borrowed By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="book.title"><span>Book</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bookRecord of bookRecords ;trackBy: trackId"
+                [hidden]="isAdmin()? !isAdmin(): bookRecord.user.login !== currentAccount.login">
+                <td>{{bookRecord.intention}}</td>
+                <td>{{bookRecord.borrowedAt | date:'mediumDate'}}</td>
+                <td>{{bookRecord.returnDate | date:'mediumDate'}}</td>
+                <td>
+                    <span [class]="bookRecord.status === 'CANCELLED' ? 'label label-danger' : 'label label-primary'">
+                        {{bookRecord.status}}</span>
+                </td>
+                <td [hidden]="!isAdmin()">
+                    {{bookRecord.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="bookRecord.book">
+                        <a [routerLink]="['../book', bookRecord.book?.id, 'view' ]" >{{bookRecord.book?.title}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/book-record', bookRecord.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit" [hidden]="!isAdmin()" [disabled]="bookRecord.status ==='CANCELLED'"
+                                [routerLink]="['/', { outlets: { popup: 'book-record/'+ bookRecord.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Cancel</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="bookRecords && bookRecords.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

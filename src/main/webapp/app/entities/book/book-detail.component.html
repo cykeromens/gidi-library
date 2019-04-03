@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div *ngIf="book" class="row">
+            <div class="col-lg-12">
+                <h2><span>Book</span> {{book.id}}</h2>
+                <hr>
+                <jhi-alert-error></jhi-alert-error>
+            </div>
+            <dl class="row-md jh-entity-details col-lg-5">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{book.title}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{book.description}}</span>
+                </dd>
+                <dt><span>Isbn</span></dt>
+                <dd>
+                    <span>{{book.isbn}}</span>
+                </dd>
+                <dt><span>Author</span></dt>
+                <dd>
+                    <span>{{book.author}}</span>
+                </dd>
+                <dt><span>Summary</span></dt>
+                <dd>
+                    <span>{{book.summary}}</span>
+                </dd>
+                <dt><span>Date Published</span></dt>
+                <dd>
+                    <span>{{book.datePublished | date: 'mediumDate'}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span [class]="book.status === 'IN_USE' ? 'label label-warning':
+                    book.status === 'AVAILABLE' ? 'label label-primary': 'label label-danger'">{{book.status}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+            </dl>
+            <dl class="col-lg-5">
+                <dd>
+                    <div *ngIf="book.image">
+                        <a (click)="openFile(book.imageContentType, book.image)">
+                            <img [src]="'data:' + book.imageContentType + ';base64,' + book.image" style="max-width: 100%;" alt="book image"/>
+                        </a>
+                        {{book.imageContentType}}, {{byteSize(book.image)}}
+                    </div>
+                </dd>
+            </dl>
+
+        </div>
+        <div class="row">
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/book', book.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
+

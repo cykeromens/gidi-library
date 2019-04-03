@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bookRecord">
+            <h2><span>Book Record</span> {{bookRecord.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Intention</span></dt>
+                <dd>
+                    <span>{{bookRecord.intention}}</span>
+                </dd>
+                <dt><span>Borrowed At</span></dt>
+                <dd>
+                    <span>{{bookRecord.borrowedAt | date:'mediumDate'}}</span>
+                </dd>
+                <dt><span>Return Date</span></dt>
+                <dd>
+                    <span>{{bookRecord.returnDate | date:'mediumDate'}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span [class]="bookRecord.status === 'CANCELLED'? 'label label-danger' : 'label label-primary'">{{bookRecord.status}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{bookRecord.user?.login}}
+                </dd>
+                <dt><span>Book</span></dt>
+                <dd>
+                    <div *ngIf="bookRecord.book">
+                        <a [routerLink]="['/book', bookRecord.book?.id, 'view']">{{bookRecord.book?.title}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button" [disabled]="bookRecord.user.login !== currentAccount.login"
+                    [routerLink]="['/book-record', bookRecord.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
