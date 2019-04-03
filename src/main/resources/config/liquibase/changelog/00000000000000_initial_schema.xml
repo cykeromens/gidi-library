@@ -9,7 +9,7 @@
     <property name="now" value="now()" dbms="h2"/>
     <property name="now" value="current_timestamp" dbms="postgresql"/>
 
-    <changeSet id="00000000000000" author="jhipster">
+    <changeSet id="00000000000000" author="gidiLibrary">
         <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="50"/>
     </changeSet>
 
@@ -17,7 +17,7 @@
         JHipster core tables.
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
-    <changeSet id="00000000000001" author="jhipster">
+    <changeSet id="00000000000001" author="gidiLibrary">
         <createTable tableName="jhi_user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>

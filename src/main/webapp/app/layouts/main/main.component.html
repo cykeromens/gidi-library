@@ -1,11 +1,32 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
+<div id="wrapper">
+    <jhi-page-ribbon></jhi-page-ribbon>
+    <div>
+        <router-outlet name="navbar"></router-outlet>
     </div>
-    <jhi-footer></jhi-footer>
+    <div class="gray-bg">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-12">
+                <h2 class="paragraph"></h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['/']">{{mainTitle}}</a>
+                    </li>
+                    <li class="breadcrumb-item" *ngIf="firstChild.data['pageTitle']">
+                        <a [routerLink]="[firstChild.data['pageTitle']]">{{firstChild.data['pageTitle']}}</a>
+                    </li>
+                    <li class="breadcrumb-item active" *ngIf="secondChild">
+                        <strong>{{secondChild.data['pageLabel']}}</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="card card-body">
+                <router-outlet></router-outlet>
+                <router-outlet name="popup"></router-outlet>
+            </div>
+
+        </div>
+        <jhi-footer></jhi-footer>
+    </div>
 </div>

@@ -7,6 +7,7 @@ export const registerRoute: Route = {
     component: RegisterComponent,
     data: {
         authorities: [],
-        pageTitle: 'Registration'
+        pageTitle: 'Registration',
+        pageLabel: 'User'
     }
 };

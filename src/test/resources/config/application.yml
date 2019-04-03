@@ -98,11 +98,6 @@ jhipster:
                 base64-secret: Y2VjYTQxNTRmZWE1MzM1MGE5NDllOWU1MDZlMjFjYWRjOTE5MWExNzQwNmIzYmZlNWMzMWFmZjU2MTY3YTE5ZjUzNmY0YmMzZGRkZDk5ODFjZWJiMTQ0YzYyNmQ4M2ZkNGJkMTQyNWJjZTJhNjRjZDgxZjJjYzJiMzdlMGYwOTA=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx.enabled: true
-        logs: # Reports Dropwizard metrics in the logs
-            enabled: true
-            report-frequency: 60 # in seconds
 
 # ===================================================================
 # Application specific properties
