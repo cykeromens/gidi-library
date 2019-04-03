@@ -76,6 +76,7 @@ public class MavenWrapperDownloader {
                 }
             }
         }
+
         System.out.println("- Downloading from: : " + url);
 
         File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
@@ -85,6 +86,7 @@ public class MavenWrapperDownloader {
                         "- ERROR creating output direcrory '" + outputFile.getParentFile().getAbsolutePath() + "'");
             }
         }
+
         System.out.println("- Downloading to: " + outputFile.getAbsolutePath());
         try {
             downloadFileFromURL(url, outputFile);
