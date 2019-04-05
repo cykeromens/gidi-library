@@ -4,13 +4,23 @@ jdk:
 before_script:
 - npm install
 cache:
-    directories:
-    - node_modules
+  directories:
+  - node_modules
 env:
-- CXX=g++-4.8
+  matrix:
+  - CXX=g++-4.8
+  global:
+    secure: CknGZIaa69XnA0ibpoK7pPsBgHwK0FAfDTekPWj4ipywh+UkPnvzNdat3KeScVtjnlqnlOX35Ej2AzhvzfrZH+pXsHK+XrYkXIeLW6NxsDBVExZqHuO9IKss6A1Zibkg7K6jKbRSVlLtoAaiwbLJN48dt7mzqoEo++1kqU+LfwU+MBDQn7ebpgHGtmFW0Bv7QJ3rtgsrUBOzy7b8MY2YS4+2uMuTCfeYwz0ILyTzCRcRr0Tgt3iELR9hjnBegunMegafCgJgD26CYAsrWCKFEsEwuIVlVJvNQBZ7BYg7+sVfHXljyHDYqblk3V3sYdKRQmA/6ipMeB8iz3kTjIg4r4WbJQ1Ikc6N4Gw6abBCxF5JxcD0EVqAws59lO435wPYDT0NQz+RATBsyKGfLy5Cwr31jpbCzklpEMddiQO6r/MQICOZSGgA8t5c1gZzJlb0i/Vn6Y4SA6K3n4q+t5jFTfeVPH4WcB4UIH4qIndB5PkoF+Y8Wg9tnwuT5QuFQA9kRhSwVKRGVn/UaVFaTQgHwQuX9zGtziLUfcF2wKWX3FnbwdIWjx61GucCEdYqwnSkhIAzPeStZ3NWpztuUsOmjMPqKKre+3IsvoFF9A1bCu8TkPu4Vo/VXzNpF+02z1b7O4WMFT+v292qHMkUjXSmjefu6MsW3zcf9LFQ/Z7+H5Q=
 addons:
-    apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-4.8
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+deploy:
+  provider: heroku
+  api_key:
+    secure: SSLnvlagbisIDiR2WWz4rivL2yiYw0yLunhb8ALJYGu2Md9oXWW3iL7owfSXfzfvavY+/a4ZbUa4nzW3aG0qHGe1ifsHVHkIsY32Xk6eaED7CPPucheJvP/JWcmdhKqTb/ZpK1cjrD/EFZE2m98NlmFJlg6kZO6DIK7b215kPpR+1/xSJ05y63MeF2f/lDERE9XeaWKGeDZX/LMPBrr3yy7bO1yrToKUW6TcxedKaynSQVs3E1LvRoae6Guza/9lgL6f/6BApotgZM+HctS9LySWHF7TMgcTiYmw5j9ET/MZqql+FnoJGyLWsagX7d1+265VsuJN1adLRaq4uk3fDKnDjCz1AZ36W8lHSuILml4hkO/HxEuCg0D3pg97tLiYg8GbdpgbhpzpeMDTwyK0AfITbaTdKIm38oWYY4fFFnmCmfOOASPH/jRKzIQpvvw+Nu1Hc/woQk/L+JFjdZqvzCQZvofcaCGqYzn9lZM5n6teumzr3CpYA4rNFKTYAI5LJtr1ToiGY0Fj1nvnis2cNMASyxOfJkYNlbD/LKdZe8/q9gojiMfEXvSXHq+vR1vULVzmvh0f6yt1vm1JC8uNZkNJ5AW20WDrFvHX1bA3F9JUdYtZzXEPTIV0y5EIfkqNLnIQI2fC87UjKfCsXdjrygNYyfhTHRDP83s5PZjQ7d0=
+  app: gidi-library
+  on:
+    repo: cykeromens/gidi-library
