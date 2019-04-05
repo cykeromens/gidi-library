@@ -24,3 +24,4 @@ deploy:
   app: gidi-library
   on:
     repo: cykeromens/gidi-library
+
